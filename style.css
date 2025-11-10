@@ -1,7 +1,12 @@
+/* --- Estilos Globais --- */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: #f0f2f5;
     margin: 0;
+    padding: 0; 
+}
+
+main {
     padding: 20px;
 }
 
@@ -10,15 +15,62 @@ h1 {
     color: #333;
 }
 
+/* --- Estilos do Header --- */
+.main-header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#menu-btn {
+    font-size: 1.8rem;
+    color: #333;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+#logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 40px;
+    width: auto;
+}
+
+/* --- Estilos da Barra de Pesquisa --- */
+#search-bar {
+    display: block;
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto 30px auto;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* --- ESTA É A PARTE QUE CORRIGE O LAYOUT --- */
 #card-container {
     display: grid;
-    /* Cria colunas responsivas: */
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    /* Isto cria colunas responsivas:
+      - 'auto-fill': Preenche com o máximo de colunas que couber.
+      - 'minmax(220px, 1fr)': Cada coluna terá NO MÍNIMO 220px,
+        mas pode esticar (1fr) para ocupar o espaço.
+    */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
+/* --- Estilos dos Cards --- */
 .card {
     background-color: #ffffff;
     border-radius: 8px;
@@ -28,7 +80,7 @@ h1 {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Esta é a animação CSS pedida no trabalho */
+/* Animação CSS */
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
@@ -53,14 +105,195 @@ h1 {
     margin: 0;
 }
 
-#search-bar {
-    display: block;
-    width: 80%;
-    max-width: 600px;
-    margin: 20px auto 30px auto; /* Centra a barra */
-    padding: 12px;
+/* ... (Todo o teu CSS anterior fica aqui) ... */
+
+/* IMPORTANTE: Faz o <a> comportar-se como um bloco e remove o sublinhado */
+a.card {
+    text-decoration: none;
+    color: inherit; /* Herda a cor do texto (preto) */
+    display: block; /* Faz o link preencher o espaço do grid */
+}
+
+
+/* --- NOVOS ESTILOS PARA A PÁGINA DE DETALHES --- */
+
+#card-detail-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.detail-card {
+    display: grid;
+    /* Duas colunas em ecrãs maiores */
+    grid-template-columns: 1fr 2fr; 
+    gap: 30px;
+}
+
+.detail-image img {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 8px;
+}
+
+.detail-info h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.detail-info p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.detail-info .description {
     font-size: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+}
+
+/* --- RESPONSIVIDADE PARA A PÁGINA DE DETALHES --- */
+
+@media (max-width: 768px) {
+    .detail-card {
+        /* Uma coluna em ecrãs pequenos (telemóvel) */
+        grid-template-columns: 1fr; 
+    }
+    
+    .detail-image {
+        text-align: center; /* Centra a imagem no telemóvel */
+    }
+
+    .detail-image img {
+        max-width: 80%; /* Reduz a imagem no telemóvel */
+    }
+
+    .detail-info h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* ... (Todo o teu CSS anterior fica aqui) ... */
+
+
+/* --- NOVOS ESTILOS DO MENU LATERAL --- */
+
+.side-nav {
+    position: fixed; /* Fica fixo no ecrã */
+    top: 0;
+    left: 0;
+    height: 100vh; /* Altura total do ecrã */
+    width: 250px; /* Largura do menu */
+    background-color: #333; /* Cor de fundo escura */
+    padding-top: 60px; /* Espaço para o header */
+    z-index: 1000; /* Garante que fica por cima de tudo */
+
+    /* Animação: escondido por defeito */
+    transform: translateX(-100%); 
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Classe que o JS vai adicionar para o mostrar */
+.side-nav.open {
+    transform: translateX(0); /* Posição visível */
+}
+
+.side-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-nav li a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: white;
+    transition: background-color 0.2s;
+}
+
+.side-nav li a:hover {
+    background-color: #555;
+}
+
+/* --- NOVOS ESTILOS DO HERO CONTAINER --- */
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-container {
+    display: flex; /* Cria as duas colunas */
+    max-width: 1200px;
+    margin: 30px auto; /* Centra o container */
+    background-color: #ffffff; /* Fundo branco ou cor escura, como na tua imagem */
+    /* background-color: #1a1a2e; */ /* Ex: Cor escura como na tua imagem */
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    overflow: hidden; /* Garante que a imagem não sai dos cantos arredondados */
+    animation: fadeIn 0.5s ease-out; /* Animação FADE IN */
+}
+
+.hero-content {
+    flex: 1; /* Ocupa 50% do espaço */
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-content p {
+    font-size: 1rem;
+    color: #666;
+}
+
+.hero-image {
+    flex: 1; /* Ocupa os outros 50% */
+    display: none; /* Escondido em telemóveis */
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Faz a imagem cobrir o espaço sem distorcer */
+}
+
+/* --- ESTILOS MODIFICADOS --- */
+
+/* Remove as margens antigas do h1 e search-bar */
+h1 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: left; /* Alinha à esquerda, dentro do hero */
+}
+
+#search-bar {
+    width: 100%; /* Ocupa 100% do .hero-content */
+    margin: 0 0 15px 0; /* Remove margens auto */
+    max-width: 100%; /* Remove o max-width antigo */
+}
+
+/* --- RESPONSIVIDADE DO HERO --- */
+@media (min-width: 768px) {
+    .hero-image {
+        display: block; /* Mostra a imagem em ecrãs maiores */
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-content {
+        padding: 40px 25px;
+    }
 }

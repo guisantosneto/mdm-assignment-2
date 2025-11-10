@@ -23,7 +23,7 @@ const loadCards = () => {
         .then(response => response.json())
         .then(data => {
             allCards = data.data; // Guarda todas as cartas
-            displayCards(allCards.slice(0, 50)); // Mostra as primeiras 50
+            // Já não mostramos nada no início!
         })
         .catch(error => {
             console.error('Erro ao buscar os dados:', error);
@@ -37,8 +37,13 @@ const displayCards = (cards) => {
     container.innerHTML = ''; // Limpa o container primeiro
     
     cards.forEach(card => {
-        const cardElement = document.createElement('div');
-        cardElement.className = 'card';
+        // AGORA É UM LINK (<a>) EM VEZ DE UMA DIV
+        const cardElement = document.createElement('a');
+        cardElement.className = 'card'; // Continuamos a usar a classe .card
+        
+        // Esta é a parte mais importante:
+        // Define o link para a nova página e passa o ID da carta na URL
+        cardElement.href = `card.html?id=${card.id}`; 
 
         cardElement.innerHTML = `
             <h3>${card.name}</h3>
@@ -52,3 +57,8 @@ const displayCards = (cards) => {
 
 // 5. Inicia o processo
 loadCards();
+
+// --- INTERAÇÃO DO MENU ---
+document.getElementById('menu-btn').addEventListener('click', () => {
+    document.getElementById('side-menu').classList.toggle('open');
+});

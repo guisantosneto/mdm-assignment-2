@@ -7,11 +7,33 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>My Yu-Gi-Oh! Card Finder</h1>
     
-    <input type="text" id="search-bar" placeholder="Procurar cartas...">
-    
-    <div id="card-container"></div>
+    <header class="main-header">
+        <button id="menu-btn">☰</button>
+        <img src="logo.png" alt="Logo do Site" id="logo">
+    </header>
+
+    <nav id="side-menu" class="side-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Yu-Gi-Oh! Card Finder</h1>
+                <input type="text" id="search-bar" placeholder="Procurar cartas...">
+                <p>Escreve o nome de uma carta para veres os resultados.</p>
+                </div>
+            
+            <div class="hero-image">
+                <img src="hero-banner.jpg" alt="Yu-Gi-Oh! Banner">
+            </div>
+        </div>
+        
+        <div id="card-container"></div>
+    </main>
 
     <script src="script.js"></script>
 </body>
