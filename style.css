@@ -1,89 +1,132 @@
-/* --- Estilos Globais --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: #f0f2f5;
+    font-family: 'Montserrat', sans-serif; 
+    background-color: #0d1b2a; 
     margin: 0;
     padding: 0; 
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;     
+    min-height: 90vh;        
     padding: 20px;
 }
 
-h1 {
-    text-align: center;
-    color: #333;
+.hero-container {
+    display: flex; 
+    max-width: 1200px;
+    width: 100%; 
+    background-color: #1b263b; 
+    color: #e0e1dd; 
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    overflow: hidden; 
 }
 
-/* --- Estilos do Header --- */
-.main-header {
-    position: relative;
+.hero-content {
+    flex: 1; 
+    padding: 60px 40px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex-direction: column;
+    justify-content: center;
 }
 
-#menu-btn {
-    font-size: 1.8rem;
-    color: #333;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
+.hero-content p {
+    font-size: 1rem;
+    color: #778da9; 
 }
 
-#logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 40px;
-    width: auto;
+.hero-image {
+    flex: 1; 
+    display: none; 
+    -webkit-mask-image: linear-gradient(to right, transparent 5%, black 50%);
+    mask-image: linear-gradient(to right, transparent 5%, black 50%);
 }
 
-/* --- Estilos da Barra de Pesquisa --- */
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.hero-content h1 {
+    text-align: left;
+    color: #ffffff; 
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
 #search-bar {
     display: block;
-    width: 80%;
-    max-width: 600px;
-    margin: 20px auto 30px auto;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 15px 0; 
     padding: 12px;
     font-size: 1rem;
-    border: 1px solid #ddd;
+    background-color: #415a77; 
+    border: 1px solid #415a77; 
+    color: #ffffff; 
     border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-sizing: border-box; 
+    font-family: 'Montserrat', sans-serif;
 }
 
-/* --- ESTA É A PARTE QUE CORRIGE O LAYOUT --- */
+#search-bar::placeholder {
+    color: #778da9;
+}
+
+#random-btn {
+    background-color: #778da9; 
+    color: #0d1b2a; 
+    font-weight: 700; 
+    border: none;
+    border-radius: 6px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#random-btn:hover {
+    background-color: #e0e1dd;
+}
+
 #card-container {
     display: grid;
-    /* Isto cria colunas responsivas:
-      - 'auto-fill': Preenche com o máximo de colunas que couber.
-      - 'minmax(220px, 1fr)': Cada coluna terá NO MÍNIMO 220px,
-        mas pode esticar (1fr) para ocupar o espaço.
-    */
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 20px;
     max-width: 1200px;
-    margin: 0 auto;
+    width: 100%; 
+    margin: 40px auto; 
 }
 
-/* --- Estilos dos Cards --- */
 .card {
-    background-color: #ffffff;
+    background-color: #1b263b;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border: 1px solid #415a77; 
     padding: 15px;
     text-align: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-/* Animação CSS */
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    border-color: #778da9; 
 }
 
 .card img {
@@ -96,39 +139,67 @@ h1 {
     font-size: 1rem;
     margin-top: 10px;
     margin-bottom: 5px;
-    color: #222;
+    color: #e0e1dd; 
 }
 
 .card p {
     font-size: 0.85rem;
-    color: #666;
+    color: #778da9; 
     margin: 0;
 }
 
-/* ... (Todo o teu CSS anterior fica aqui) ... */
-
-/* IMPORTANTE: Faz o <a> comportar-se como um bloco e remove o sublinhado */
 a.card {
     text-decoration: none;
-    color: inherit; /* Herda a cor do texto (preto) */
-    display: block; /* Faz o link preencher o espaço do grid */
+    color: inherit;
+    display: block;
 }
 
+@media (min-width: 768px) {
+    .hero-image {
+        display: block; 
+    }
+}
 
-/* --- NOVOS ESTILOS PARA A PÁGINA DE DETALHES --- */
+@media (max-width: 767px) {
+    .hero-content {
+        padding: 40px 25px;
+    }
+    .hero-content h1 {
+        text-align: center; 
+    }
+}
+
+.btn-back {
+    display: inline-block; 
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #e0e1dd; 
+    background-color: #415a77; 
+    border: 1px solid #415a77;
+    border-radius: 6px;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-back:hover {
+    background-color: #778da9;
+    color: #0d1b2a;
+}
 
 #card-detail-container {
     max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #1b263b; 
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .detail-card {
     display: grid;
-    /* Duas colunas em ecrãs maiores */
     grid-template-columns: 1fr 2fr; 
     gap: 30px;
 }
@@ -141,10 +212,10 @@ a.card {
 
 .detail-info h2 {
     font-size: 2rem;
-    color: #333;
+    color: #e0e1dd; 
     margin-top: 0;
     margin-bottom: 20px;
-    border-bottom: 2px solid #f0f0f0;
+    border-bottom: 2px solid #415a77; 
     padding-bottom: 10px;
 }
 
@@ -152,148 +223,40 @@ a.card {
     font-size: 1.1rem;
     line-height: 1.6;
     margin: 10px 0;
+    color: #e0e1dd; 
 }
 
 .detail-info .description {
     font-size: 1rem;
-    background-color: #f9f9f9;
+    background-color: #0d1b2a; 
     padding: 15px;
     border-radius: 5px;
-    border: 1px solid #eee;
+    border: 1px solid #415a77; 
+    color: #778da9; 
 }
 
-/* --- RESPONSIVIDADE PARA A PÁGINA DE DETALHES --- */
-
-@media (max-width: 768px) {
-    .detail-card {
-        /* Uma coluna em ecrãs pequenos (telemóvel) */
-        grid-template-columns: 1fr; 
-    }
-    
-    .detail-image {
-        text-align: center; /* Centra a imagem no telemóvel */
-    }
-
-    .detail-image img {
-        max-width: 80%; /* Reduz a imagem no telemóvel */
-    }
-
-    .detail-info h2 {
-        font-size: 1.5rem;
-    }
+main > .btn-back {
+    display: block; 
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* ... (Todo o teu CSS anterior fica aqui) ... */
-
-
-/* --- NOVOS ESTILOS DO MENU LATERAL --- */
-
-.side-nav {
-    position: fixed; /* Fica fixo no ecrã */
-    top: 0;
-    left: 0;
-    height: 100vh; /* Altura total do ecrã */
-    width: 250px; /* Largura do menu */
-    background-color: #333; /* Cor de fundo escura */
-    padding-top: 60px; /* Espaço para o header */
-    z-index: 1000; /* Garante que fica por cima de tudo */
-
-    /* Animação: escondido por defeito */
-    transform: translateX(-100%); 
-    transition: transform 0.3s ease-in-out;
-}
-
-/* Classe que o JS vai adicionar para o mostrar */
-.side-nav.open {
-    transform: translateX(0); /* Posição visível */
-}
-
-.side-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.side-nav li a {
-    display: block;
-    padding: 15px 20px;
-    text-decoration: none;
-    font-size: 1.2rem;
-    color: white;
-    transition: background-color 0.2s;
-}
-
-.side-nav li a:hover {
-    background-color: #555;
-}
-
-/* --- NOVOS ESTILOS DO HERO CONTAINER --- */
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.hero-container {
-    display: flex; /* Cria as duas colunas */
-    max-width: 1200px;
-    margin: 30px auto; /* Centra o container */
-    background-color: #ffffff; /* Fundo branco ou cor escura, como na tua imagem */
-    /* background-color: #1a1a2e; */ /* Ex: Cor escura como na tua imagem */
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    overflow: hidden; /* Garante que a imagem não sai dos cantos arredondados */
-    animation: fadeIn 0.5s ease-out; /* Animação FADE IN */
-}
-
-.hero-content {
-    flex: 1; /* Ocupa 50% do espaço */
-    padding: 60px 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.hero-content p {
-    font-size: 1rem;
-    color: #666;
-}
-
-.hero-image {
-    flex: 1; /* Ocupa os outros 50% */
-    display: none; /* Escondido em telemóveis */
-}
-
-.hero-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Faz a imagem cobrir o espaço sem distorcer */
-}
-
-/* --- ESTILOS MODIFICADOS --- */
-
-/* Remove as margens antigas do h1 e search-bar */
-h1 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    text-align: left; /* Alinha à esquerda, dentro do hero */
-}
-
-#search-bar {
-    width: 100%; /* Ocupa 100% do .hero-content */
-    margin: 0 0 15px 0; /* Remove margens auto */
-    max-width: 100%; /* Remove o max-width antigo */
-}
-
-/* --- RESPONSIVIDADE DO HERO --- */
-@media (min-width: 768px) {
-    .hero-image {
-        display: block; /* Mostra a imagem em ecrãs maiores */
-    }
+main > #card-detail-container {
+    margin-top: 0; 
 }
 
 @media (max-width: 767px) {
-    .hero-content {
-        padding: 40px 25px;
+    .detail-card {
+        grid-template-columns: 1fr; 
+    }
+    .detail-image {
+        text-align: center; 
+    }
+    .detail-image img {
+        max-width: 80%; 
+    }
+    .detail-info h2 {
+        font-size: 1.5rem;
     }
 }
